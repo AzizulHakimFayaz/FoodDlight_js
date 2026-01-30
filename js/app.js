@@ -53,7 +53,7 @@ function renderFoodItems(items) {
                 </div>
                 
                 <div class="card-footer">
-                    <div class="price">$${item.price}</div>
+                    <div class="price">$${item.price.toFixed(2)}</div>
                     <button class="add-btn" onclick="addToCart('${item.id}')">
                         <span class="material-icons">add</span>
                     </button>
