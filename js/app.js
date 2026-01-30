@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // State
-let cartCount = 0;
+let cart = JSON.parse(localStorage.getItem('foodCart')) || [];
 let activeCategory = 'All';
 
 // Init
@@ -13,6 +13,7 @@ function init() {
     renderCategories();
     renderFoodItems(window.foodItems);
     setupEventListeners();
+    updateCartUI(); // Update UI on load
 }
 
 // Render Categories
@@ -110,8 +111,18 @@ window.addToCart = (id) => {
     // Find item
     const item = window.foodItems.find(i => i.id == id);
 
-    // Increment cart
-    cartCount++;
+    // Check if item already in cart
+    const existingItem = cart.find(cartItem => cartItem.id == id);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ ...item, quantity: 1 });
+    }
+
+    // Save to localStorage
+    localStorage.setItem('foodCart', JSON.stringify(cart));
+
     updateCartUI();
 
     console.log(`Added ${item.name} to cart`);
@@ -126,10 +137,16 @@ window.addToCart = (id) => {
 
 function updateCartUI() {
     const cartCountElement = document.querySelector('.cart-count');
-    // If text was "Cart", change to number, or append
-    if (cartCount > 0) {
-        cartCountElement.textContent = `Cart (${cartCount})`;
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+    if (totalItems > 0) {
+        cartCountElement.textContent = `Cart (${totalItems})`;
     } else {
         cartCountElement.textContent = 'Cart';
     }
 }
+
+// Navigate to Order Page
+document.querySelector('.cart-btn').addEventListener('click', () => {
+    window.location.href = 'order.html';
+});
