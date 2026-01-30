@@ -8,7 +8,7 @@
     --text-secondary: #757575;
     --accent: #FF6F61;
     --icon-color: #B2DFDB;
-    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -37,7 +37,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .nav-content {
@@ -84,7 +84,8 @@ body {
     transition: color 0.3s;
 }
 
-.nav-links a.active, .nav-links a:hover {
+.nav-links a.active,
+.nav-links a:hover {
     color: var(--primary);
 }
 
@@ -169,7 +170,7 @@ body {
     display: flex;
     align-items: center;
     max-width: 500px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .search-icon {
@@ -227,9 +228,10 @@ body {
     height: 450px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     animation: rotate 20s linear infinite;
-    background-color: #fff; /* fallback */
+    background-color: #fff;
+    /* fallback */
     border: 4px solid white;
 }
 
@@ -240,8 +242,13 @@ body {
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .floating-tag {
@@ -249,7 +256,7 @@ body {
     background-color: white;
     padding: 10px 16px;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -282,11 +289,13 @@ body {
     gap: 16px;
     overflow-x: auto;
     padding-bottom: 10px;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .category-list::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
+    /* Chrome/Safari */
 }
 
 .category-pill {
@@ -347,10 +356,12 @@ body {
 
 /* Food Card */
 .food-card {
-    width: 320px; /* Wider to accommodate floating image */
+    width: 320px;
+    /* Wider to accommodate floating image */
     height: 380px;
     position: relative;
-    margin-top: 60px; /* Space for image pop-out */
+    margin-top: 60px;
+    /* Space for image pop-out */
 }
 
 .card-background {
@@ -380,8 +391,13 @@ body {
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg) scale(1.05); }
-    to { transform: rotate(360deg) scale(1.05); }
+    from {
+        transform: rotate(0deg) scale(1.05);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.05);
+    }
 }
 
 .card-image {
@@ -394,7 +410,7 @@ body {
     border-radius: 50%;
     border: 4px solid white;
     object-fit: cover;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
     z-index: 10;
 }
@@ -402,7 +418,8 @@ body {
 .rating-badge {
     position: absolute;
     top: 20px;
-    right: 35px; /* Adjust based on card width */
+    right: 35px;
+    /* Adjust based on card width */
     background: white;
     padding: 6px 10px;
     border-radius: 20px;
@@ -411,7 +428,7 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     z-index: 11;
 }
 
@@ -440,6 +457,7 @@ body {
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -482,7 +500,7 @@ body {
     text-align: center;
     padding: 40px;
     color: var(--text-secondary);
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Responsiveness */
@@ -491,7 +509,7 @@ body {
         justify-content: center;
         text-align: center;
     }
-    
+
     .hero-text {
         padding-right: 0;
         margin-bottom: 60px;
@@ -509,12 +527,15 @@ body {
     }
 
     .nav-links {
-        display: none; /* Simple hiding for mobile, ideally would be a hamburger menu */
+        display: none;
+        /* Simple hiding for mobile, ideally would be a hamburger menu */
     }
 }
 
 @media (max-width: 600px) {
-    .circle-bg, .rotating-image-container {
+
+    .circle-bg,
+    .rotating-image-container {
         width: 300px;
         height: 300px;
     }
@@ -522,7 +543,7 @@ body {
     .hero-text h1 {
         font-size: 48px;
     }
-    
+
     .container {
         padding: 0 20px;
     }
