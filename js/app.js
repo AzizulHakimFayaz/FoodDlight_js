@@ -38,14 +38,14 @@ function renderFoodItems(items) {
 
     foodGrid.innerHTML = items.map(item => `
         <div class="food-card">
+            <div class="rating-badge">
+                <span class="material-icons" style="font-size: 14px; color: var(--accent);">star</span>
+                ${item.rating}
+            </div>
+            
             <img src="${item.image}" alt="${item.name}" class="card-image">
             
             <div class="card-background">
-                <div class="rating-badge">
-                    <span class="material-icons" style="font-size: 14px; color: var(--accent);">star</span>
-                    ${item.rating}
-                </div>
-                
                 <div class="card-info">
                     <span class="category-label">${item.category}</span>
                     <h3>${item.name}</h3>
@@ -53,7 +53,7 @@ function renderFoodItems(items) {
                 </div>
                 
                 <div class="card-footer">
-                    <div class="price">$${item.price.toFixed(2)}</div>
+                    <div class="price">৳${item.price}</div>
                     <button class="add-btn" onclick="addToCart('${item.id}')">
                         <span class="material-icons">add</span>
                     </button>
@@ -90,6 +90,7 @@ function setupEventListeners() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.querySelector('.search-btn');
 
+    // Search checks name, category, and description
     const handleSearch = () => {
         const term = searchInput.value.toLowerCase();
         const filtered = window.foodItems.filter(item =>
@@ -115,7 +116,7 @@ window.addToCart = (id) => {
 
     console.log(`Added ${item.name} to cart`);
 
-    // Animate cart button
+    // Visual feedback
     const cartBtn = document.querySelector('.cart-btn');
     cartBtn.style.transform = 'scale(1.2)';
     setTimeout(() => {

@@ -387,6 +387,7 @@ body {
 
 .food-card:hover .card-image {
     animation: spin 3s linear infinite;
+    /* translateX(-50%) keeps it centered during rotation */
     transform: translateX(-50%) scale(1.05) rotate(10deg);
 }
 

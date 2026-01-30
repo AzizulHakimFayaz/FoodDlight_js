@@ -35,8 +35,7 @@ function createFloatingIcons() {
         const duration = Math.random() * 10 + 15;
         icon.style.animation = `floatUp ${duration}s linear infinite`;
 
-        // Random delay so they don't all start at once
-        // Negative delay makes them start "mid-animation" so screen isn't empty on load
+        // Negative delay starts animation "in the past" so screen isn't empty on load.
         const delay = Math.random() * 20;
         icon.style.animationDelay = `-${delay}s`;
 

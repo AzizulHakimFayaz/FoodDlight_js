@@ -5,10 +5,11 @@
     left: 0;
     width: 100%;
     height: 100%;
+    /* Don't block clicks on content */
     pointer-events: none;
-    /* Allows clicking through */
+
+    /* Behind all content so it's a true background */
     z-index: -1;
-    /* Behind all content */
     overflow: hidden;
 }
 
@@ -16,11 +17,11 @@
 .floating-icon {
     position: absolute;
     color: var(--primary);
-    /* Uses variable from variables.css */
     opacity: 0.1;
-    /* Very subtle opacity */
-    font-size: 24px;
+    font-size: 50px;
     user-select: none;
+
+    /* Optimized rendering */
     will-change: transform;
 }
 
