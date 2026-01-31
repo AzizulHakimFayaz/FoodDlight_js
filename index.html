@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieDelight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/floating-icons.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="material-icons logo-icon">food_bank</span>
+                <span class="logo-text">FoodieDelight</span>
+            </div>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="cart-btn">
+                    <span class="material-icons">shopping_cart</span>
+                    <span class="cart-count">Cart</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <div class="tagline">More than just food</div>
+                    <h1>Taste the <br>Extraordinary</h1>
+                    <p class="description">Experience culinary perfection delivered straight to your door. <br>Fresh
+                        ingredients, masters chefs, and unforgettable flavors.</p>
+
+                    <div class="search-bar">
+                        <span class="material-icons search-icon">search</span>
+                        <input type="text" placeholder="Search your cravings..." id="search-input">
+                        <button class="search-btn">Search</button>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="circle-bg"></div>
+                    <div class="rotating-image-container">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Featured Pizza"
+                            class="rotating-image">
+                    </div>
+                    <div class="floating-tag tag-top">
+                        <span class="material-icons">timer</span>
+                        <span>20 min</span>
+                    </div>
+                    <div class="floating-tag tag-bottom">
+                        <span class="material-icons">star</span>
+                        <span>4.9 Rating</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="category-section">
+            <div class="container">
+                <div class="category-list" id="category-list">
+                    <!-- Categories will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Section -->
+        <section class="food-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Delicacies</h2>
+                    <a href="#" class="see-menu">See Menu</a>
+                </div>
+
+                <div class="food-grid" id="food-grid">
+                    <!-- Food items will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 FoodieDelight. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/floating-icons.js"></script>
+</body>
+
+</html>

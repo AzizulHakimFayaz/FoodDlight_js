@@ -1,0 +1,526 @@
+/* ===== ANIMATIONS KEYFRAMES ===== */
+
+/* Staggered slide-in animation for cart items */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Floating animation for summary card */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Subtle glow pulse for prices */
+@keyframes pricePulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 0 transparent;
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+    }
+}
+
+/* Scale pop for quantity changes */
+@keyframes popScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Slide out animation for item removal */
+@keyframes slideOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100px) scale(0.8);
+    }
+}
+
+/* Bounce in animation */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Button ripple effect */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Gradient border animation */
+@keyframes gradientBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Wiggle animation for empty cart */
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+}
+
+/* Order Page Styles */
+.order-container {
+    max-width: 1000px;
+    margin: 120px auto 50px;
+    /* Top margin for fixed navbar */
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Cart items takes 2/3, Summary takes 1/3 */
+    gap: 30px;
+}
+
+/* Section Headers */
+h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* Cart Items List */
+.cart-items {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    animation: slideInFromLeft 0.5s ease forwards;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Staggered animation delays for cart items */
+.cart-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.cart-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.cart-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.cart-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.cart-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.cart-item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Hover effect with subtle lift and glow */
+.cart-item:hover {
+    transform: translateX(5px);
+    background: linear-gradient(90deg, rgba(255, 107, 107, 0.05) 0%, transparent 100%);
+    border-radius: 12px;
+}
+
+/* Item removal animation class */
+.cart-item.removing {
+    animation: slideOutRight 0.4s ease forwards;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-item:hover .cart-item-image {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--primary);
+    font-weight: 700;
+    animation: pricePulse 2s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.cart-item-price.updated {
+    animation: popScale 0.3s ease;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 20px;
+    background: linear-gradient(145deg, #f5f5f5, #e8e8e8);
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05), -2px -2px 5px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.quantity-controls:hover {
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.08), -3px -3px 8px rgba(255, 255, 255, 0.9);
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.qty-btn:hover {
+    color: var(--primary);
+    background: rgba(255, 107, 107, 0.1);
+    transform: scale(1.15);
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-display {
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+    transition: transform 0.15s ease;
+}
+
+.qty-display.pop {
+    animation: popScale 0.3s ease;
+}
+
+/* Remove Button */
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff4757;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.remove-btn:hover {
+    background: #fff0f0;
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.remove-btn:active {
+    transform: scale(0.9);
+}
+
+/* Order Summary (Sidebar) */
+.order-summary {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    animation: bounceIn 0.6s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+}
+
+.order-summary:hover {
+    animation: float 3s ease-in-out infinite;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Animated gradient border effect */
+.order-summary::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #ffa502, #ff6b6b, #ffa502);
+    background-size: 400% 400%;
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: gradientBorder 3s ease infinite;
+}
+
+.order-summary:hover::before {
+    opacity: 1;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    animation: slideInFromLeft 0.4s ease forwards;
+    opacity: 0;
+}
+
+.summary-row:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.summary-row:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.summary-row:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.summary-row.total {
+    border-top: 2px dashed #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    animation-delay: 0.4s;
+}
+
+.summary-row.total span:last-child {
+    color: var(--primary);
+    animation: pricePulse 2s ease-in-out infinite;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, #ff8a80 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: bounceIn 0.5s ease;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+}
+
+/* Shimmer effect on checkout button */
+.checkout-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 71, 87, 0.4);
+}
+
+.checkout-btn:active {
+    transform: scale(0.98);
+}
+
+.continue-shopping {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.continue-shopping::after {
+    content: '→';
+    margin-left: 5px;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.continue-shopping:hover {
+    color: var(--primary);
+    transform: translateX(3px);
+}
+
+.continue-shopping:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Empty State */
+.empty-cart {
+    text-align: center;
+    padding: 50px;
+    grid-column: 1 / -1;
+    animation: bounceIn 0.8s ease;
+}
+
+.empty-cart-icon {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 20px;
+    animation: wiggle 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+.empty-cart h3 {
+    animation: slideInFromLeft 0.5s ease;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+.empty-cart p {
+    animation: slideInFromLeft 0.5s ease;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .order-container {
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+    }
+
+    .order-summary {
+        position: static;
+    }
+}
