@@ -25,7 +25,7 @@ function renderCart() {
 
     // Render Items
     cartContainer.innerHTML = cart.map(item => `
-        <div class="cart-item">
+        <div class="cart-item" data-item-id="${item.id}">
             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
             
             <div class="cart-item-details">
@@ -69,25 +69,113 @@ window.updateQuantity = (id, change) => {
 
     if (item) {
         item.quantity += change;
+
+        // Animate quantity display
+        const cartItem = document.querySelector(`[data-item-id="${id}"]`);
+        if (cartItem) {
+            const qtyDisplay = cartItem.querySelector('.qty-display');
+            const priceDisplay = cartItem.querySelector('.cart-item-price');
+
+            if (qtyDisplay) {
+                qtyDisplay.classList.add('pop');
+                setTimeout(() => qtyDisplay.classList.remove('pop'), 300);
+            }
+
+            if (priceDisplay) {
+                priceDisplay.classList.add('updated');
+                setTimeout(() => priceDisplay.classList.remove('updated'), 300);
+            }
+        }
+
         if (item.quantity <= 0) {
-            cart = cart.filter(i => i.id != id);
+            // Animate item removal
+            animateRemoval(id, () => {
+                cart = cart.filter(i => i.id != id);
+                localStorage.setItem('foodCart', JSON.stringify(cart));
+                renderCart();
+            });
+            return;
         }
     }
 
     localStorage.setItem('foodCart', JSON.stringify(cart));
-    renderCart(); // Re-render logic
+    updateSummary(cart);
+
+    // Update just the quantity display and price without full re-render
+    const cartItem = document.querySelector(`[data-item-id="${id}"]`);
+    if (cartItem && item) {
+        cartItem.querySelector('.qty-display').textContent = item.quantity;
+    }
 };
 
-window.removeItem = (id) => {
-    let cart = JSON.parse(localStorage.getItem('foodCart')) || [];
-    cart = cart.filter(i => i.id != id);
+// Animate item removal with slide-out effect
+function animateRemoval(id, callback) {
+    const cartItem = document.querySelector(`[data-item-id="${id}"]`);
+    if (cartItem) {
+        cartItem.classList.add('removing');
+        setTimeout(callback, 400);
+    } else {
+        callback();
+    }
+}
 
-    localStorage.setItem('foodCart', JSON.stringify(cart));
-    renderCart();
+window.removeItem = (id) => {
+    animateRemoval(id, () => {
+        let cart = JSON.parse(localStorage.getItem('foodCart')) || [];
+        cart = cart.filter(i => i.id != id);
+        localStorage.setItem('foodCart', JSON.stringify(cart));
+        renderCart();
+    });
 };
 
 window.placeOrder = () => {
-    alert("Order Placed Successfully! \nThank you for choosing FoodieDelight.");
-    localStorage.removeItem('foodCart');
-    window.location.href = 'index.html';
+    // Create confetti celebration
+    createConfetti();
+
+    setTimeout(() => {
+        alert("🎉 Order Placed Successfully! \nThank you for choosing FoodieDelight.");
+        localStorage.removeItem('foodCart');
+        window.location.href = 'index.html';
+    }, 1000);
 };
+
+// Confetti celebration animation
+function createConfetti() {
+    const colors = ['#ff6b6b', '#ffa502', '#ff7675', '#fd79a8', '#a29bfe', '#74b9ff'];
+    const container = document.body;
+
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+            position: fixed;
+            width: ${Math.random() * 10 + 5}px;
+            height: ${Math.random() * 10 + 5}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${Math.random() * 100}vw;
+            top: -20px;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+            animation: confettiFall ${Math.random() * 2 + 2}s linear forwards;
+            z-index: 9999;
+            pointer-events: none;
+        `;
+        container.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+// Add confetti animation to document
+const confettiStyle = document.createElement('style');
+confettiStyle.textContent = `
+    @keyframes confettiFall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(confettiStyle);
